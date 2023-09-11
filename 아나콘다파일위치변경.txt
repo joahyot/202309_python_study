@@ -1,0 +1,4 @@
+ANACONDA 파일 위치 변경
+
+기존: %HOMEPATH%
+변경:D:\python~
