@@ -1,0 +1,43 @@
+<RAW>
+cm2 = coilid / pass_number / cm2 feature 35
+coils = mapping table --> BATCHNO / pass_number / FINAL STEP / ALLOY / DATE / USERNAME / prev_BATCHNO / prev_pass_number
+start = coilid / pass_number / ctc_time_start / feature 35
+end = coilid / pass_number / ctc_time_start / feature 35
+
+<병합파일>
+start_end = coilid / pass_number / start_feature 35 / end_feature 35
+cm2p = cm2 + coils = cm2 파일을 기준으로 coilid / pass_number 매치시켜 병합한 파일 
+     = coilid / pass_number / cm2 feature / FINAL STEP / ALLOY / DATE / USERNAME / prev_BATCHNO / prev_pass_number
+pre_coil = cm2 파일에서 'median_Bending_Actual', 'median_Tilt_Actual'값을 제외하여 copy한 파일 
+cm2px = 
+1. cm2p 파일에서 prev_BATCHNO / USERNAME / coilid / median_bending / median_tilting 값을 가져오고
+2. prev_BATCHNO 기준으로 index 설정하고
+3. pre_coil 데이터 파일에서 'coilid'와 'pass_number' 동일한 데이터를 불러온다
+
+
+# pre_coil.columns = ['p_' + c for c in pre_coil.columns]
+# 이전 코일의 값만 유의미한 변수로 사용되기 때문에 굳이 p_붙일 필요없음
+
+
+# modeling review (23.09.11)
+validation = 전체 데이터의 50%로 modeling을 하고 만든 모델을 test(50%) 데이터에 적용
+y=ax+b 
+hyper plain 상으로 fitting 
+OLS = Ordinary List Square 
+
+# Linear regression - OLS Results 
+coef = 
+t -value = 변수의 유의미여부 검증
+
+# Linear regression의 한계가 생기는 이유 
+변수끼리의 상관관계가 높으면 
+
+# Linear regression의 한계를 극복하기 위한 방법
+- LASSO regression
+- Ridge regression
+전처리가 필요함 : standardization, feature scaling
+
+feature scaling(Regulerization 중 하나)의 종류 2가지 
+Normalization ; DL에서 많이 사용
+Standardization ; Linear regression 에서 많이 사용
+
