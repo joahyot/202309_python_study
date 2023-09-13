@@ -41,3 +41,7 @@ feature scaling(Regulerization 중 하나)의 종류 2가지
 Normalization ; DL에서 많이 사용
 Standardization ; Linear regression 에서 많이 사용
 
+Hyper parameter tunning
+K-fold validation 
+
+* fit_transform (train) - transform (test) 차이 
