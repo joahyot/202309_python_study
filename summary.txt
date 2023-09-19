@@ -45,3 +45,14 @@ Hyper parameter tunning
 K-fold validation 
 
 * fit_transform (train) - transform (test) 차이 
+
+results.params # 회귀 계수
+results.rsquared # 결정 계수
+results.rsquared_adj # 수정된 결정 계수
+results.pvalues # 회귀 계수 검정 p value
+results.tvalues # 회귀 계수 검정 t 통계량
+results.conf_int() # 95% 회귀 계수 추정치 신뢰구간
+results.mse_resid ## MSE
+results.fittedvalues ## 적합값 y_hat in-sample prediction (= results.predict(X))
+results.resid ## 잔차 y-y_hat
+
