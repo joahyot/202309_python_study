@@ -1,0 +1,70 @@
+비교 분석 LASSO 
+
+import pandas as pd 
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import Ridge, RidgeCV, Lasso
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score, mean_squared_error
+from sklearn.preprocessing import StandardScaler
+
+
+train_cm2 = mdl_data.sample(frac = 0.6)
+test_cm2 = mdl_data[~mdl_data.index.isin(train_cm2.index)] 
+
+y_train = train_cm2['delta_Bending_Actual']
+X_train = train_cm2[var_list].iloc[:,:-1]
+
+y_test = test_cm2['delta_Bending_Actual']
+X_test = test_cm2[var_list].iloc[:,:-1]
+
+scaler = StandardScaler()
+X_train_std = scaler.fit_transform(X_train)
+X_test_std = scaler.transform(X_test)
+
+lasso = Lasso(alpha = 0.5)
+lasso.fit(X_train, y_train)
+
+yhat_train = lasso.predict(X_train_std)
+yhat_test = lasso.predict(X_test_std)
+
+-----------------------------------------------------
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import Ridge, RidgeCV, Lasso
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import r2_score,  mean_squared_error
+
+train_cm2 = mdl_data.sample(frac = 0.6)
+test_cm2 = mdl_data[~mdl_data.index.isin(train_cm2.index)] 
+
+y_train = train_cm2['delta_Bending_Actual']
+X_train = train_cm2[var_list].iloc[:,:-1]
+
+y_test = test_cm2['delta_Bending_Actual']
+X_test = test_cm2[var_list].iloc[:,:-1]
+
+scaler = StandardScaler()
+X_train_std = scaler.fit_transform(X_train)
+X_test_std = scaler.transform(X_test)
+
+lasso = Lasso(alpha = 0.5)
+lasso.fit(X_train_std, y_train)
+
+yhat_train = lasso.predict(X_train_std)
+yhat_test = lasso.predict(X_test_std)
+
+print(f"R2:{r2_score(y_train , yhat_train): 5.2f}   RMSE:{mean_squared_error(y_train, yhat_train)**0.5: 5.1f}")
+print(f"R2:{r2_score(y_test, yhat_test): 5.2f}   RMSE:{mean_squared_error(y_test, yhat_test)**0.5: 5.1f}")
+
+y = test_cm2['target_Bending_Actual']
+yhat = yhat_test + test_cm2['median_Bending_Actual']
+plt.figure(figsize=(10,6))
+plt.scatter(x = yhat, y=y, s=1)
+print(f"R2:{r2_score(y, yhat): 5.2f}   RMSE:{mean_squared_error(y, yhat)**0.5: 5.1f}")
