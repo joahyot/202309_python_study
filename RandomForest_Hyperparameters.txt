@@ -1,6 +1,8 @@
 # RandomForest_Hyperparameters (종류와 의미)
 
-1. max_depth;
+** hyperparameter(O) vs. parameter(X) --> 직접 조정 가능한 지 여부를 기준으로 구분
+
+1. max_depth; 결정 나무의 최대 깊이. 
 the maximum depth of the tree-meaning the longest path between the root node and the leaf node
 
 2. min_sample_split;
@@ -14,19 +16,19 @@ This is the maximum number of leaf nodes a decision tree can have
 This is the minimum number of samples required to be at a leaf node 
 where the default = 1 
 
-5. n_estimators;
+5. n_estimators; 랜덤포레스트를 구성하는 결정나무의 개수 (기본값 100)
 This is the number of trees in the RandomForest_Hyperparameters
 
-6. max_sample;
+6. max_sample; 각 결정 나무를 학습하는데 사용할 샘플의 개수 혹은 비율.
 This determines the fraction of the original dataset that is given to any individual tree
 
-7. max_features;
+7. max_features; 결정 나무를 분지할 때 고려하는 특징 수(int) 혹은 비율(float). 기본값은 sqrt로 특징 개수에 루트를 씌운 값
 This is the number of features to condider when looking for the best split.
 
 8. bootstrap;
 If this is set as False, the whole dataset is used to build each tree, but it is set as default
 
-9. criterion;
+9. criterion; 결정 나무의 노드를 분지할 때 사용하는 불순도 측정 방식 ('mse, mae' 중 하나로 입력), (최근 버전에서는 'squared_error, absolute_error로 입력)
 The function to measure the quality of a split
 
 
@@ -59,4 +61,8 @@ This parameter controls both the randomness of the bootstrapping of the samples 
 ** n_jobs: int, default = None 
 This parameter refers to the number of jobs to run in parallel which essentially tells the engine how many processors it can use.
 -1 means that thare are no restrictions, 1 means it can only use 1 processor.
+
+
+# 왜 하이퍼파라미터 튜닝이 필요할까?
+하이퍼파라미터 설정에 따라 모델의 성능이 상이함 따라서 모델을 최적화하기 위해 조정하는 과정이 필요한 것! 
 

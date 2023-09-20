@@ -1,0 +1,37 @@
+# K-fold Cross validation
+
+모델의 학습과 검증에 사용되는 데이터를 k개의 fold로 나누어서 교차로 검증하는 방법
+
+예를 들어 k=5일 때를 가정하면,
+데이터를 5개로 분할한 뒤 4개의 trianing fold와 1개의 validation fold로 나누는 것이다
+이렇게 5개의 데이터를 이용해 모델을 학습 및 검증(평가)하고 나면, 5개의 performance가 나오게 된다. 
+
+
+*** Model selection 
+교차 검증이 모델 선택의 이용되는 경우 
+
+1. 전체 데이터를 K-fold 교차 검증을 통해 k개의 performance를 얻는다
+2. 각 모델에서 k개의 performance의 평균 값을 비교해서 더 나은 모델을 선택한다
+3. 선택된 모델에 전체 데이터 셋을 재학습 시킨다. 
+
+
+*** Model Tuning = Hyper-parameter tuning
+모델 튜닝은 하이퍼파라미터의 튜닝을 통해 최적의 모델을 찾는 것
+    - 최적화(optimization)은 train data로 더 좋은 성능을 얻기 위해 모델을 조정하는 것
+    - 일반화(generalization)는 학습된 모델이 unseen data에서도 좋은 성능을 내는 모델인가 말하는 것
+
+모델 튜닝의 과정 
+1. train set을 통해 k-fold 교차검증을 한다. 4개의 train fold를 통해 모델 학습을 진행할 때, 하이퍼파라미터의 후보들 마다 각각 작업을 진행한다
+2. 가장 높은 measures를 산출하는 하이퍼파라미터를 fix한 후, 기존 train set을 통해 재적합한다.(결과 확인용)
+3. test set으로 performance 계산 후 성능이 만족스럽다면, full dataset을 모델에 재적합한다. (모델 활용용)
+
+==> 이 과정에서 최적의 하이퍼파라미터 조합을 찾도록 해주는 대표적인 기법이 GridSearchCV와 RandomizedSearchCV 이다. 
+    - GridSearchCV : 검증하고 싶은 하이퍼파라미터들의 수치를 정해주고 그 조합을 모두 검정함 - 지정해준대로 사용
+    - RandomizedSearchCV : 검증하려는 하이퍼파라미터들의 값 범위를 정해주면 무작위로 값을 지정해 그 조합을 모두 검정함 - 시간이 오래걸려서 안씀
+
+RandomizedSearchCV는 GridSearchCV에 비해 시간상 효율적
+데이터가 많고 파라미터 튜밍이 많이 필요할 때 효과적
+
+GridSearchCV는 데이터가 많고, 튜닝해야할 파라미터가 많은 경우 비효율적
+성능 개선을 위해 모든 파라미터 조합을 진행해야할 때 사용하는 것이 적절
+
