@@ -1,4 +1,4 @@
-# RandomForest_Hyperparameters
+# RandomForest_Hyperparameters (종류와 의미)
 
 1. max_depth;
 the maximum depth of the tree-meaning the longest path between the root node and the leaf node
@@ -28,3 +28,35 @@ If this is set as False, the whole dataset is used to build each tree, but it is
 
 9. criterion;
 The function to measure the quality of a split
+
+
+
+# Hyperparameters Tuning to improve predictions
+
+*** n_estimators: int, defualt = 100
+This is the number of trees in the forest
+with an increase in the number of trees, the precision of the outcome increase - therefore better accuracy, and overfitting is reduced.
+However, this will make your model slower - therefore choosing an n_estimator value which your processer can handle allow your model to be more stable and perform well.
+
+
+*** max_features: "sqrt", "log2", int or float, default = "sqrt"
+Many would assume that if you increase max_features, this will improve the overall performance of your model
+However, this naturally decreases the diversity of individual trees which would also increase the time it took the model to produce outputs
+Therefore, findinig an optimal max_features is important to your model's performance
+
+
+*** min_sample_leaf: int or float, default = 1
+This is the minimum number of samples required to be at a leaf node. 
+A leaf node is the end node of a decision tree and a smaller min_sample_leaf value will make the model more vulnerable to detecting noise.
+Again, hyperparameter tuning is about finding the optimum - therefore trying out different leaf size is advised
+
+
+# Hyperparameters Tuning to improve modeling training phase
+
+** random_state: int, RandomState instance or None, defualt = None
+This parameter controls both the randomness of the bootstrapping of the samples used when building trees and the sampling of the features to consider when looking for the best split at each node
+
+** n_jobs: int, default = None 
+This parameter refers to the number of jobs to run in parallel which essentially tells the engine how many processors it can use.
+-1 means that thare are no restrictions, 1 means it can only use 1 processor.
+
