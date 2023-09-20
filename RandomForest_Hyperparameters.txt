@@ -1,0 +1,30 @@
+# RandomForest_Hyperparameters
+
+1. max_depth;
+the maximum depth of the tree-meaning the longest path between the root node and the leaf node
+
+2. min_sample_split;
+The minimum number of samples required to split an internal node
+where the default = 2
+
+3. max_leaf_nodes;
+This is the maximum number of leaf nodes a decision tree can have
+
+4. min_sample_leaf;
+This is the minimum number of samples required to be at a leaf node 
+where the default = 1 
+
+5. n_estimators;
+This is the number of trees in the RandomForest_Hyperparameters
+
+6. max_sample;
+This determines the fraction of the original dataset that is given to any individual tree
+
+7. max_features;
+This is the number of features to condider when looking for the best split.
+
+8. bootstrap;
+If this is set as False, the whole dataset is used to build each tree, but it is set as default
+
+9. criterion;
+The function to measure the quality of a split
