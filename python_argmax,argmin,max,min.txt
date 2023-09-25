@@ -28,3 +28,20 @@ print('최대값은 {}'.format(max(data)),
       '최대값의 위치는 {}'.format(np.argmax(data)), sep='\n')
 ==> 최대값은 992
     최대값의 위치는 3
+
+
+import numpy as np
+
+data2 = np.random.randint(1000, size=50)
+data2
+print(min(data2),
+      np.argmin(data2),
+      sep='\n')
+
+==> 76
+    40
+
+print('최소값은 {}'.format(min(data2)),
+      '최소값의 위치는 {}'.format(np.argmin(data2)))
+==> 최소값은 76
+    최소값의 위치는 40
